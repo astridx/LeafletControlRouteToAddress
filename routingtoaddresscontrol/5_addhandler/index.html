@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Leaflet Control Plugin - Routingtoaddress</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
+        <link rel="stylesheet" href="LeafletControlRoutingtoaddress.css" />
+        <script src="LeafletControlRoutingtoaddress.js"></script>
+    </head>
+    <body>
+        <div style="height: 400px" id="mapid"></div>
+        <script>
+            var mymap = L.map('mapid').setView([50.27264, 7.26469], 13);
+
+            L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png')
+                    .addTo(mymap);
+
+            L.leafletControlRoutingtoaddress({ position: 'topright' }).addTo(mymap);
+        </script>
+    </body>
+</html>
