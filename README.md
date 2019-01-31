@@ -95,8 +95,7 @@ You can pass a number of options to the plugin to control various settings.
 | placeholder | string | 'Please insert your address here.' | Sets the text which appears as the tooltip of the control. |
 | errormessage | string | 'Address not valid.' | Sets the text which appears as the errormessage of the control. |
 | distance | string | 'Entfernung:' | Sets the text which appears as the distance label the control. |
-| duration | string | 'Fahrzeit:' | Sets the text which appears as the duration label of the control. ![leaflet control plugin routingtoaddress 6](https://user-images.githubusercontent.com/9974686/52069055-44aff500-257e-11e9-9748-7e349fcfda70.png)
-|
+| duration | string | 'Fahrzeit:' | Sets the text which appears as the duration label of the control. ![leaflet control plugin routingtoaddress 6](https://user-images.githubusercontent.com/9974686/52069055-44aff500-257e-11e9-9748-7e349fcfda70.png)|
 | target | string | 'Koblenz, Rheinland-Pfalz, Deutschland' | Sets the text which set the target address. |
 | requesterror | string | 'Too Many Requests" or "Not Authorized - Invalid Token' | Sets the text which appears as the requesterror of the control. |
 
