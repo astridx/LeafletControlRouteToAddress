@@ -92,12 +92,12 @@ You can pass a number of options to the plugin to control various settings.
 | position | [Leaflet control position](http://leafletjs.com/reference-1.1.0.html#controls) | 'topright' | Position if the control |
 | router | string | 'osrm' | Sets the router - possible values are `mapbox` or `osrm`|
 | token | string | '' | You need this if you use mapbox. Mapbox access token. You can find your access tokens, create new ones, or delete existing ones on the [Mapbox Access Tokens page](https://docs.mapbox.com/help/how-mapbox-works/access-tokens/).|
-| placeholder | string | 'Print map' | Sets the text which appears as the tooltip of the control. |
-| errormessage | string | 'Print map' | Sets the text which appears as the errormessage of the control. |
-| distance | string | 'Print map' | Sets the text which appears as the distance label the control. |
-| duration | string | 'Print map' | Sets the text which appears as the duration label of the control. |
-| target | string | 'Print map' | Sets the text which set the target address. |
-| requesterror | string | 'Print map' | Sets the text which appears as the requesterror of the control. |
+| placeholder | string | 'Please insert your address here.' | Sets the text which appears as the tooltip of the control. |
+| errormessage | string | 'Address not valid.' | Sets the text which appears as the errormessage of the control. |
+| distance | string | 'Entfernung:' | Sets the text which appears as the distance label the control. |
+| duration | string | 'Fahrzeit:' | Sets the text which appears as the duration label of the control. |
+| target | string | 'Koblenz, Rheinland-Pfalz, Deutschland' | Sets the text which set the target address. |
+| requesterror | string | 'Too Many Requests" or "Not Authorized - Invalid Token' | Sets the text which appears as the requesterror of the control. |
 
 
 
