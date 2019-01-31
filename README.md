@@ -81,7 +81,27 @@ To use Mapbox you'll need a
 Mapbox access token. You can find your access tokens, create new ones, 
 or delete existing ones on the [Mapbox Access Tokens page](https://docs.mapbox.com/help/how-mapbox-works/access-tokens/).
 
-# Development of the plugin - see the folder routingtoaddresscontrol
+# Options
+
+### Options
+You can pass a number of options to the plugin to control various settings.
+
+| Option        | Type         | Default      | Description   |
+| ------------- |--------------|--------------|---------------|
+| title | string | 'Print map' | Sets the text which appears as the tooltip of the print/export control |
+| position | [Leaflet control position](http://leafletjs.com/reference-1.1.0.html#controls) | 'topright' | Position if the control |
+| router | string | 'osrm' | Sets the router - possible values are `mapbox` or `osrm`|
+| token | string | '' | You need this if you use mapbox. Mapbox access token. You can find your access tokens, create new ones, or delete existing ones on the [Mapbox Access Tokens page](https://docs.mapbox.com/help/how-mapbox-works/access-tokens/).|
+| placeholder | string | 'Print map' | Sets the text which appears as the tooltip of the control. |
+| errormessage | string | 'Print map' | Sets the text which appears as the errormessage of the control. |
+| distance | string | 'Print map' | Sets the text which appears as the distance label the control. |
+| duration | string | 'Print map' | Sets the text which appears as the duration label of the control. |
+| target | string | 'Print map' | Sets the text which set the target address. |
+| requesterror | string | 'Print map' | Sets the text which appears as the requesterror of the control. |
+
+
+
+# Development of the plugin - see in the folder routingtoaddresscontrol
 
 If you are interested in the develment of this plugin, 
 you can view the development levels in the `routingtoaddresscontrol` directory.

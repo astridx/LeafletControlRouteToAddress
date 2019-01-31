@@ -10,3 +10,8 @@
 .addressinput {
     width: 100%;
 }
+@media only screen and (max-width: 400px) {
+    .addressinput {
+       margin-left: 20%;
+    }
+}
