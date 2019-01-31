@@ -1,3 +1,10 @@
+document.addEventListener('DOMContentLoaded', function () {
+    var placesAutocomplete = places({
+        container: document.querySelector(".address-input")
+    });
+}, false);
+
+
 L.LeafletControlRoutingtoaddress = L.Control.extend({
     options: {
         position: 'topright',
@@ -17,7 +24,7 @@ L.LeafletControlRoutingtoaddress = L.Control.extend({
         
         var controlElementTag = 'div';
         var controlElementClass = 'leaflet-control-routingtoaddress';
-        var controlElement = L.DomUtil.create(controlElementTag, controlElementClass);
+        controlElement = this._controlElement = controlElement = L.DomUtil.create(controlElementTag, controlElementClass);
 
         marker_startingpoint = this._marker_startingpoint = L.marker([0, 0]);
         marker_target = this._marker_tarket = L.marker([0, 0]);
@@ -36,6 +43,10 @@ L.LeafletControlRoutingtoaddress = L.Control.extend({
     },
 
     _keydown: function (e) {
+        
+        input.classList.remove("address-error");
+        controlElement.classList.remove("control-error");
+        controlElement.classList.remove("control-tomanyrequests");
 
         switch (e.keyCode) {
             // Enter
@@ -78,16 +89,20 @@ L.LeafletControlRoutingtoaddress = L.Control.extend({
                             json_obj_startingpoint[0].lat +
                             '?overview=full&geometries=geojson'));
 
-                    if (typeof json_obj_route.routes[0] !== 'undefined') {
-                        this._route_linestring = L.geoJSON(json_obj_route.routes[0].geometry).addTo(this._map);
-                        this._map.fitBounds(this._route_linestring.getBounds());
+                    if (json_obj_route.message === 'Too Many Requests')
+                    {
+                        input.classList.add("address-error");
+                        controlElement.classList.add("control-tomanyrequests");
+                    } 
+                    else if (typeof json_obj_route.routes[0].geometry === 'undefined' ) {
+                        input.classList.add("address-error");
+                        controlElement.classList.add("control-error");                        
                     }
                     else
                     {
-                        input.placeholder = this.options.errormessage;
-                        this._input.value = '';
+                        this._route_linestring = L.geoJSON(json_obj_route.routes[0].geometry).addTo(this._map);
+                        this._map.fitBounds(this._route_linestring.getBounds());
                     }
-
                 }
                 
                 function Get(url){
@@ -110,3 +125,4 @@ L.LeafletControlRoutingtoaddress = L.Control.extend({
 L.leafletControlRoutingtoaddress = function (options) {
     return new L.LeafletControlRoutingtoaddress(options);
 };
+

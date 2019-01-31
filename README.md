@@ -1,5 +1,90 @@
 # LeafletControlRouteToAddress
-Control plugins for the Leaflet JavaScript library that makes it possible to insert a address and get the route to a "fix" address.
+Control plugins for the Leaflet JavaScript library that makes it possible to insert 
+an address and get the route to a `"fix"` address.  
+
+# Demo
+
+You can view an example to get an idea of what it can do. I have published an 
+article explaining the plugin:
+
+- [LeafletControlRouteToAddress](https://astrid-guenther.de/dies-und-das/38-leaflet-control-plugin-leafletcontrolroutetoaddress)?
+
+# Quickstart
+
+1. Download the latest release.
+2. Include the CSS and JS in your page 
+
+```
+...
+<link rel="stylesheet" href="LeafletControlRoutingtoaddress.css" />
+<script src="LeafletControlRoutingtoaddress.js"></script>
+...
+```
+
+3. Initialize the plugin
+You can initialize the plugin in the standard Leaflet way adding it to a map instance. 
+To add the basic routing control to your map instance, use this Javascript code. 
+
+```
+...
+<script>
+    var mymap = L.map('mapid').setView([50.27264, 7.26469], 13);
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png')
+            .addTo(mymap);
+
+    L.leafletControlRoutingtoaddress({
+        position: 'topright',
+        router: 'osrm',
+        token: '',
+        placeholder: 'Please insert your address here.',
+        errormessage: 'Address not valid.',
+        distance: 'Entfernung:',
+        duration: 'Fahrzeit',
+        target: 'Koblenz, Rheinland-Pfalz, Deutschland',
+        requesterror: '"Too Many Requests" or "Not Authorized - Invalid Token"'
+
+    }).addTo(mymap);
+</script>
+...
+```
+Note that in the basic version, the control uses [OSRM](http://project-osrm.org/). 
+OSRM is sometimes busy and can not provide a routing. 
+If you like to use [Mapbox](https://www.mapbox.com/) this is possible. 
+To add the mapbox routing control 
+to your map instance, use this Javascript code. 
+
+```
+...
+<script>
+    var mymap = L.map('mapid').setView([50.27264, 7.26469], 13);
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png')
+            .addTo(mymap);
+
+    L.leafletControlRoutingtoaddress({
+        position: 'topright',
+        router: 'mapbox',
+        token: 'pk.xxx',
+        placeholder: 'Please insert your address here.',
+        errormessage: 'Address not valid.',
+        distance: 'Entfernung:',
+        duration: 'Fahrzeit',
+        target: 'Koblenz, Rheinland-Pfalz, Deutschland',
+        requesterror: '"Too Many Requests" or "Not Authorized - Invalid Token"'
+
+    }).addTo(mymap);
+</script>
+...
+```
+To use Mapbox you'll need a 
+Mapbox access token. You can find your access tokens, create new ones, 
+or delete existing ones on the [Mapbox Access Tokens page](https://docs.mapbox.com/help/how-mapbox-works/access-tokens/).
+
+# Development of the plugin - see the folder routingtoaddresscontrol
+
+If you are interested in the develment of this plugin, 
+you can view the development levels in the `routingtoaddresscontrol` directory.
 
 1. Start with boilerplate https://github.com/astridx/leafletjs-plugin-boilerplate
 2. Rename boilerpalte
@@ -8,6 +93,11 @@ Control plugins for the Leaflet JavaScript library that makes it possible to ins
 5. add handler, set to top
 6. no jquery and geocoder for searching address, , todo if adresse nicht gefunden
 7. create marker (in add methode refernez zu map, delete marker todo if adresse nicht gefunden no starign point)
-8. route als json, lat lon vertauscht
-9. show route
+8. Route as JSON.
+9. Show route on map.
+10. Set bounding box.
+11. Catch errors.
+12. Use places.
+13. Show details.
+14. Add Mapbox router.
 

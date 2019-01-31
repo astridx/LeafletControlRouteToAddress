@@ -1,9 +1,29 @@
+document.addEventListener('DOMContentLoaded', function () {
+    var placesAutocomplete = places({
+        container: document.querySelector(".addressinput")
+    });
+    var $address = document.querySelector(".addressinput")
+    
+    placesAutocomplete.on('change', function(e) {
+        $address.textContent = e.suggestion.value
+    });
+
+    placesAutocomplete.on('clear', function() {
+        $address.textContent = 'none';
+    });
+    
+}, false);
+
+
 L.LeafletControlRoutingtoaddress = L.Control.extend({
     options: {
         position: 'topright',
         placeholder: 'Please insert your address here.',
         errormessage: 'Address not valid.',
-        target: 'Koblenz, Rheinland-Pfalz, Deutschland'
+        distance: 'Entfernung:',
+        duration: 'Fahrzeit',
+        target: 'Koblenz, Rheinland-Pfalz, Deutschland',
+        requesterror: 'Die Route kann nicht berechnet werden, weil der Server ausgelastet ist. Bitte versuchen Sie es später noch einmal.'
     },
 
     initialize: function (options) {
@@ -17,7 +37,7 @@ L.LeafletControlRoutingtoaddress = L.Control.extend({
         
         var controlElementTag = 'div';
         var controlElementClass = 'leaflet-control-routingtoaddress';
-        var controlElement = L.DomUtil.create(controlElementTag, controlElementClass);
+        controlElement = this._controlElement = controlElement = L.DomUtil.create(controlElementTag, controlElementClass);
 
         marker_startingpoint = this._marker_startingpoint = L.marker([0, 0]);
         marker_target = this._marker_tarket = L.marker([0, 0]);
@@ -26,9 +46,14 @@ L.LeafletControlRoutingtoaddress = L.Control.extend({
         input = this._input = L.DomUtil.create('input');
         input.type = 'text';
         input.placeholder = this.options.placeholder;
-        input.classList.add("address-input");
+        input.classList.add("addressinput");
 
         controlElement.appendChild(input);
+
+        messagebox = this._messagebox = L.DomUtil.create('div');
+        messagebox.classList.add("messagebox");
+
+        controlElement.appendChild(messagebox);
 
         L.DomEvent.addListener(input, 'keydown', this._keydown, this);
 
@@ -36,10 +61,14 @@ L.LeafletControlRoutingtoaddress = L.Control.extend({
     },
 
     _keydown: function (e) {
+        
+        this._messagebox.innerHTML = '';
+        messagebox.classList.remove("messagebox");
 
         switch (e.keyCode) {
             // Enter
             case 13:
+                messagebox.classList.add("messagebox");
                 if (this._marker_startingpoint) {
                     this._map.removeLayer(this._marker_startingpoint);
                 }
@@ -77,15 +106,21 @@ L.LeafletControlRoutingtoaddress = L.Control.extend({
                             ',' +
                             json_obj_startingpoint[0].lat +
                             '?overview=full&geometries=geojson'));
-
-                    if (typeof json_obj_route.routes[0] !== 'undefined') {
-                        this._route_linestring = L.geoJSON(json_obj_route.routes[0].geometry).addTo(this._map);
-                        this._map.fitBounds(this._route_linestring.getBounds());
+                    
+                    if (json_obj_route.message === 'Too Many Requests')
+                    {
+                        this._messagebox.innerHTML = this.options.requesterror;
+                    } 
+                    else if (typeof json_obj_route.routes[0] === 'undefined' ) {
+                        this._messagebox.innerHTML = this.options.errormessage;
                     }
                     else
                     {
-                        input.placeholder = this.options.errormessage;
-                        this._input.value = '';
+                        this._route_linestring = L.geoJSON(json_obj_route.routes[0].geometry).addTo(this._map);
+                        var distance = (json_obj_route.routes[0].legs[0].distance)/1000;
+                        var duration = (json_obj_route.routes[0].legs[0].duration)/60;
+                        this._map.fitBounds(this._route_linestring.getBounds());
+                        this._messagebox.innerHTML = this.options.distance + ' ' + distance.toFixed(2) + ' km, ' + this.options.duration + ' ' +  duration.toFixed(2) + ' min';
                     }
 
                 }
@@ -110,3 +145,4 @@ L.LeafletControlRoutingtoaddress = L.Control.extend({
 L.leafletControlRoutingtoaddress = function (options) {
     return new L.LeafletControlRoutingtoaddress(options);
 };
+

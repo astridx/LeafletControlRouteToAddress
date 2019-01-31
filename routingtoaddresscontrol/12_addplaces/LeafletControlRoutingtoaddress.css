@@ -1,0 +1,12 @@
+.leaflet-control-routingtoaddress {
+    width:300px;
+}
+.address-error {
+    color: red;
+}
+.control-error:after {
+    content: 'Address not found. Please try again';
+}
+.control-tomanyrequests:after {
+    content: 'Too Many Requests. Please try again';    
+}
