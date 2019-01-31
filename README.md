@@ -89,15 +89,15 @@ You can pass a number of options to the plugin to control various settings.
 | Option        | Type         | Default      | Description   |
 | ------------- |--------------|--------------|---------------|
 | title | string | 'Print map' | Sets the text which appears as the tooltip of the print/export control |
-| position | [Leaflet control position](http://leafletjs.com/reference-1.1.0.html#controls) | 'topright' | Position if the control |
+| position | [Leaflet control position](https://leafletjs.com/reference.html#control-position) | 'topright' | Position if the control |
 | router | string | 'osrm' | Sets the router - possible values are `mapbox` or `osrm`|
 | token | string | '' | You need this if you use mapbox. Mapbox access token. You can find your access tokens, create new ones, or delete existing ones on the [Mapbox Access Tokens page](https://docs.mapbox.com/help/how-mapbox-works/access-tokens/).|
-| placeholder | string | 'Please insert your address here.' | Sets the text which appears as the tooltip of the control. |
-| errormessage | string | 'Address not valid.' | Sets the text which appears as the errormessage of the control. |
-| distance | string | 'Entfernung:' | Sets the text which appears as the distance label the control. |
+| placeholder | string | 'Please insert your address here.' | Sets the text which appears as the placeholder of the control. ![leaflet control plugin routingtoaddress 1](https://user-images.githubusercontent.com/9974686/52069062-4679b880-257e-11e9-9a8b-ad9d5c4ead42.png)|
+| errormessage | string | 'Address not valid.' | Sets the text which appears as the errormessage of the control. ![leaflet control plugin routingtoaddress 4](https://user-images.githubusercontent.com/9974686/52069058-45488b80-257e-11e9-9dc1-04103ed541d9.png)|
+| distance | string | 'Entfernung:' | Sets the text which appears as the distance label the control. ![leaflet control plugin routingtoaddress 5](https://user-images.githubusercontent.com/9974686/52069056-44aff500-257e-11e9-853e-de5d6b774c51.png)|
 | duration | string | 'Fahrzeit:' | Sets the text which appears as the duration label of the control. ![leaflet control plugin routingtoaddress 6](https://user-images.githubusercontent.com/9974686/52069055-44aff500-257e-11e9-9748-7e349fcfda70.png)|
 | target | string | 'Koblenz, Rheinland-Pfalz, Deutschland' | Sets the text which set the target address. |
-| requesterror | string | 'Too Many Requests" or "Not Authorized - Invalid Token' | Sets the text which appears as the requesterror of the control. |
+| requesterror | string | 'Too Many Requests" or "Not Authorized - Invalid Token' | Sets the text which appears as the requesterror of the control. ![leaflet control plugin routingtoaddress 3](https://user-images.githubusercontent.com/9974686/52069059-45e12200-257e-11e9-8626-872560b22742.png)|
 
 
 
