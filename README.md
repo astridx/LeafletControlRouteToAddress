@@ -11,7 +11,7 @@ article explaining the plugin:
 
 # Quickstart
 
-1. Download the latest release.
+1. Download the latest [release](https://github.com/astridx/LeafletControlRouteToAddress/releases).
 2. Include the CSS and JS in your page 
 
 ```
